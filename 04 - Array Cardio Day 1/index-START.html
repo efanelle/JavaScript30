@@ -33,28 +33,64 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteen = inventors.filter( item => item.year >=1500 && item.year <1600)
+    // console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const inventor = inventors.map(item => item.first + ' ' + item.last);
+    // console.log(inventor);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sorted = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+    // console.table(sorted);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const life = inventors.reduce((start, item) =>{
+        return start + (item.passed - item.year)
+    }, 0)
+    // console.log(life);
 
     // 5. Sort the inventors by years lived
+    const longLife = inventors.sort( (a, b) => {
+      return a.passed - a.year > b.passed - b.year ? -1 : 1;
+    })
+    // console.table(longLife);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const category = document.querySelector('.mw-category')
+    // const links = Array.from(category.querySelectorAll('a'))
+    // const road = links
+    //       .map(link=> link.textContent)
+    //       .filter(street=>street.indexOf('de') !== -1);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    
+    const lastName = people.sort((a, b) => {
+      const first = a.split(', ');
+      const next = b.split(', ');
+      return first[0] > next[0] ? 1 : -1
+    })
+      // console.log(lastName);
+    
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce(function(start, item) {
+      if (!start[item]) {
+        start[item] = 1
+      } else {
+        start[item]++;
+      }
+      return start;
+    }, {})
+    console.log(transportation);
 
   </script>
 </body>
